@@ -290,8 +290,6 @@ WebRtcStreamer.prototype.onAddStream = function(event) {
 
   var videoElement = document.getElementById(this.videoElement);
   videoElement.srcObject = event.stream;
-  // videoElement.width = 128;
-  // videoElement.height = 96;
   var promise = videoElement.play();
   if (promise !== undefined) {
     promise.catch(error => {
