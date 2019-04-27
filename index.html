@@ -161,16 +161,22 @@
             var videoelt = document.createElement("video");
             videoelt.id = videoTag;
             videoelt.title = getText(url);
+            // Mute to allow autoplay
+            videoelt.muted = true;
+            // videoelt.width = 128;
+            // videoelt.height = 96;
             videoelt.onclick = function() {
-              window.open(
-                webrtcConfig.url +
-                  "/webrtcstreamer.html?video=" +
-                  encodeURIComponent(url.video) +
-                  "&audio=" +
-                  encodeURIComponent(url.audio) +
-                  "&options=" +
-                  encodeURIComponent(argoptions)
-              );
+              // videoelt.play();
+              // Disable onclick open new tab
+              // window.open(
+              //   webrtcConfig.url +
+              //     "/webrtcstreamer.html?video=" +
+              //     encodeURIComponent(url.video) +
+              //     "&audio=" +
+              //     encodeURIComponent(url.audio) +
+              //     "&options=" +
+              //     encodeURIComponent(argoptions)
+              // );
             };
             divelt.appendChild(videoelt);
             contentDiv.appendChild(divelt);

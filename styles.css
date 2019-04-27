@@ -1,14 +1,29 @@
 @import url('/nav.css');
-video {
-    display: block; 
-    margin: 0 auto;
+
+body {
+    margin: 0px;
+    background-color: #1F384C;
+    /* for mobile */
+    width: 980px;
+    height: 550px;
 }
+
+video {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
 table {
     margin: 0 auto;
 }
+
 h2 {
-    text-align: center; 
+    text-align: center;
 }
+
 footer {
-    text-align: center; 
+    text-align: center;
 }

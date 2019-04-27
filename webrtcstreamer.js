@@ -15,7 +15,13 @@ function WebRtcStreamer(videoElement, srvurl) {
       window.location.port;
   this.pc = null;
 
-  this.pcOptions = { optional: [{ DtlsSrtpKeyAgreement: true }] };
+  this.pcOptions = {
+    optional: [
+      {
+        DtlsSrtpKeyAgreement: true
+      }
+    ]
+  };
 
   this.mediaConstraints = {
     offerToReceiveAudio: false,
@@ -102,7 +108,9 @@ WebRtcStreamer.prototype.onReceiveGetIceServers = function(
   stream
 ) {
   this.iceServers = iceServers;
-  this.pcConfig = iceServers || { iceServers: [] };
+  this.pcConfig = iceServers || {
+    iceServers: []
+  };
   try {
     this.pc = this.createPeerConnection();
 
@@ -256,7 +264,9 @@ WebRtcStreamer.prototype.onIceCandidate = function(event) {
       request(
         "POST",
         this.srvurl + "/api/addIceCandidate?peerid=" + this.pc.peerid,
-        { body: JSON.stringify(event.candidate) }
+        {
+          body: JSON.stringify(event.candidate)
+        }
       ).done(function(response) {
         if (response.statusCode === 200) {
           console.log("addIceCandidate ok:" + response.body);
@@ -280,6 +290,8 @@ WebRtcStreamer.prototype.onAddStream = function(event) {
 
   var videoElement = document.getElementById(this.videoElement);
   videoElement.srcObject = event.stream;
+  // videoElement.width = 128;
+  // videoElement.height = 96;
   var promise = videoElement.play();
   if (promise !== undefined) {
     promise.catch(error => {
@@ -306,7 +318,9 @@ WebRtcStreamer.prototype.onReceiveCall = function(dataJson) {
         request(
           "POST",
           bind.srvurl + "/api/addIceCandidate?peerid=" + bind.pc.peerid,
-          { body: JSON.stringify(candidate) }
+          {
+            body: JSON.stringify(candidate)
+          }
         ).done(function(response) {
           if (response.statusCode === 200) {
             console.log("addIceCandidate ok:" + response.body);

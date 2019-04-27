@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="libs/request.min.js"></script>
     <script src="libs/adapter.min.js"></script>
+    <!-- Actually this can be named webrtcstreamer-config.js, which is easier to understand and follow correct naming -->
     <script src="webrtcstreamer.json"></script>
     <script src="webrtcstreamer.js"></script>
     <script>
@@ -20,15 +21,16 @@
           }
         }
         window.onload = function() {
-          document.getElementById("title").innerHTML = url.video;
+          // document.getElementById("title").innerHTML = url.video; // Disable title
           webRtcServer.connect(url.video, url.audio, options);
           request("GET", webrtcConfig.url + "/api/version").done(function(
             response
           ) {
-            document.getElementById("footer").innerHTML =
-              "<p><a href='https://github.com/mpromonet/webrtc-streamer'>WebRTC-Streamer</a> " +
-              JSON.parse(response.body).split(" ")[0] +
-              "</p>";
+            // Disable footer
+            // document.getElementById("footer").innerHTML =
+            //   "<p><a href='https://github.com/mpromonet/webrtc-streamer'>WebRTC-Streamer</a> " +
+            //   JSON.parse(response.body).split(" ")[0] +
+            //   "</p>";
           });
         };
         window.onbeforeunload = function() {
@@ -52,8 +54,9 @@
     </script>
   </head>
   <body>
-    <h2 id="title"></h2>
-    <video id="video"></video>
-    <footer id="footer"></footer>
+    <!-- Only video element, mute to enable autoplay-->
+    <!-- <h2 id="title"></h2> -->
+    <video muted controls id="video"></video>
+    <!-- <footer id="footer"></footer> -->
   </body>
 </html>
